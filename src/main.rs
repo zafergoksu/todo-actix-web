@@ -12,10 +12,6 @@ use tokio_postgres::NoTls;
 async fn main() -> io::Result<()> {
     dotenv().ok();
 
-    for (k, v) in dotenv::vars() {
-        println!("{}, {}", k, v);
-    }
-
     let config = crate::config::Config::from_env().unwrap();
 
     let pool = config.pg.create_pool(NoTls).unwrap();
